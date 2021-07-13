@@ -19,6 +19,7 @@ class ArtistCreditNameEditor extends React.Component {
     this.handleArtistChange = this.handleArtistChange.bind(this);
     this.handleNameBlur = this.handleNameBlur.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDisplayModeChange = this.handleDisplayModeChange.bind(this);
     this.handleJoinPhraseBlur = this.handleJoinPhraseBlur.bind(this);
     this.handleJoinPhraseChange = this.handleJoinPhraseChange.bind(this);
   }
@@ -48,6 +49,10 @@ class ArtistCreditNameEditor extends React.Component {
 
   handleNameChange(event) {
     this.props.onChange({name: event.target.value});
+  }
+
+  handleDisplayModeChange(event) {
+    this.props.onChange({displayMode: event.target.value});
   }
 
   handleJoinPhraseBlur(event) {
@@ -113,6 +118,15 @@ class ArtistCreditNameEditor extends React.Component {
             type="text"
             value={nonEmpty(name.name) ? name.name : ''}
           />
+        </td>
+        <td>
+          <select
+            id={`${id}-display-mode-${index}`}
+            onChange={this.handleDisplayModeChange}
+            value={nonEmpty(name.displayMode) ? name.displayMode : 'replace'}>
+            <option value="replace">Replace</option>
+            <option value="credited-as">Credited as</option>
+          </select>
         </td>
         <td>
           <input

@@ -13,6 +13,11 @@ has 'join_phrase' => (
     isa => 'Str'
 );
 
+has 'display_mode' => (
+    isa => 'Maybe[Str]',
+    is => 'rw',
+);
+
 has 'artist_id' => (
     is => 'rw',
     isa => 'Int'
@@ -29,6 +34,7 @@ sub TO_JSON {
     return {
         artist      => $self->artist->TO_JSON,
         joinPhrase  => $self->join_phrase,
+        displayMode => $self->display_mode,
         name        => $self->name,
     };
 }

@@ -93,8 +93,9 @@ const ArtistCreditBubble = ({
           </tr>
         ) : null}
         <tr className="artist-credit-header">
-          <th style={{width: '40%'}}>{l('Artist in MusicBrainz:')}</th>
-          <th style={{width: '40%'}}>{l('Artist as credited:')}</th>
+          <th style={{width: '35%'}}>{l('Artist in MusicBrainz:')}</th>
+          <th style={{width: '35%'}}>{l('Artist as credited:')}</th>
+          <th style={{width: '10%'}}>Display</th>
           <th>{l('Join phrase:')}</th>
           <th />
         </tr>
