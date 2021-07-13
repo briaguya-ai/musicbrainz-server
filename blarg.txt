@@ -1,0 +1,27 @@
+ran into issue with js/css trying to load from old WEB_SERVER in DBDefs.pm
+
+when trying to create a new clean db, ran into:
+Can't locate JSON.pm in @INC (you may need to install the JSON module) (@INC contains: /home/briaguya/code/musicbrainz-server/admin/../lib /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.32.1 /usr/local/share/perl/5.32.1 /usr/lib/x86_64-linux-gnu/perl5/5.32 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.32 /usr/share/perl/5.32 /usr/local/lib/site_perl) at /home/briaguya/code/musicbrainz-server/admin/../lib/DBDefs/Default.pm line 32.
+BEGIN failed--compilation aborted at /home/briaguya/code/musicbrainz-server/admin/../lib/DBDefs/Default.pm line 32.
+Compilation failed in require at /usr/lib/x86_64-linux-gnu/perl-base/parent.pm line 16.
+BEGIN failed--compilation aborted at /home/briaguya/code/musicbrainz-server/admin/../lib/DBDefs.pm line 29.
+Compilation failed in require at ./admin/InitDb.pl line 34.
+BEGIN failed--compilation aborted at ./admin/InitDb.pl line 34.
+
+ran sudo cpan JSON
+
+ran sudo -u postgres ./admin/InitDb.pl --createdb --clean
+
+Can't locate aliased.pm in @INC
+
+ran cpanm --installdeps --notest .
+
+Can't locate aliased.pm in @INC (you may need to install the aliased module)
+
+sudo cpanm --installdeps .
+
+turns out that was because i was trying to run as postgres i think
+
+anyways, the actual issue with the DBDefs.pm webserver stuff was needing to rebuild the static web resources
+./script/compile_resources.sh
+
