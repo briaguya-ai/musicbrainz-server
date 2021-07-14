@@ -52,6 +52,7 @@ sub is_equal {
         return 0 unless
             ($an->name eq $bn->name) &&
             (($an->join_phrase || '') eq ($bn->join_phrase || '')) &&
+            (($an->display_mode == $bn->display_mode)) &&
             (($an->artist_id || 0) == ($bn->artist_id || 0));
     }
 

@@ -14,7 +14,7 @@ has 'join_phrase' => (
 );
 
 has 'display_mode' => (
-    isa => 'Maybe[Str]',
+    isa => 'Str',
     is => 'rw',
 );
 

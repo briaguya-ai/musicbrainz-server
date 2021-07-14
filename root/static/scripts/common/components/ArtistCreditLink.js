@@ -66,6 +66,8 @@ const MpIcon = hydrate<MpIconProps>('span.ac-mp', (
   );
 });
 
+//todo put display in a function somewhere
+//todo make "credited as" localizable
 const ArtistCreditLink = ({
   artistCredit,
   showDeleted = true,
@@ -79,7 +81,7 @@ const ArtistCreditLink = ({
     if (artist) {
       parts.push(
         <EntityLink
-          content={credit.name}
+          content={credit.displayMode === 'credited-as' ? `${artist.name} (credited as: ${credit.name})` : credit.name}
           entity={artist}
           key={`${artist.id}-${i}`}
           showDeleted={showDeleted}
