@@ -23,12 +23,29 @@ has 'artist' => (
     isa => 'Artist'
 );
 
+has 'display_mode_id' => (
+    is => 'rw',
+    isa => 'Int'
+);
+
+has 'display_mode' => (
+    is => 'rw',
+    isa => 'ArtistCreditNameDisplayMode',
+);
+
+sub display_mode_name
+{
+    my ($self) = @_;
+    return $self->display_mode ? $self->display_mode->name : undef;
+}
+
 sub TO_JSON {
     my ($self) = @_;
 
     return {
         artist      => $self->artist->TO_JSON,
         joinPhrase  => $self->join_phrase,
+        displayModeId => $self->display_mode_id,
         name        => $self->name,
     };
 }
