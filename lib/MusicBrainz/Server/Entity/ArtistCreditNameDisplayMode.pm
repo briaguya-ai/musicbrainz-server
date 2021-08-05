@@ -3,6 +3,8 @@ package MusicBrainz::Server::Entity::ArtistCreditNameDisplayMode;
 use Moose;
 use MusicBrainz::Server::Translation::Attributes qw( lp );
 
+use aliased 'MusicBrainz::Server::Entity::ArtistCreditName';
+
 extends 'MusicBrainz::Server::Entity';
 
 with 'MusicBrainz::Server::Entity::Role::OptionsTree' => {
@@ -14,6 +16,14 @@ sub entity_type { 'artist_credit_name_display_mode' }
 sub l_name {
     my $self = shift;
     return lp($self->name, 'artist_credit_name_display_mode')
+}
+
+sub TO_JSON {
+    my ($orig, $self) = @_;
+    return {
+        %{ $self->$orig },
+        name => covert_to_json($self->name)
+    };
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -4,7 +4,7 @@ use Moose::Util::TypeConstraints;
 
 for my $cls (qw(AggregatedTag AliasType Annotation Application
                 Area AreaAlias AreaType
-                Artist ArtistAlias ArtistCredit ArtistCreditName ArtistType
+                Artist ArtistAlias ArtistCredit ArtistCreditName ArtistCreditNameDisplayMode ArtistType
                 AutoEditorElection AutoEditorElectionVote
                 Barcode CDTOC CDStub Collection CollectionType Coordinates
                 CoverArtType

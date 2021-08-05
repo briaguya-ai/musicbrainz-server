@@ -24,7 +24,7 @@ sub get_by_ids
 {
     my ($self, @ids) = @_;
     my $artist_columns = $self->c->model('Artist')->_columns;
-    my $query = "SELECT artist, artist_credit_name.name AS ac_name, join_phrase, artist_credit, " .
+    my $query = "SELECT artist, artist_credit_name.name AS ac_name, join_phrase, display_mode, artist_credit, " .
                 $artist_columns . ", ac.edits_pending AS ac_edits_pending " .
                 "FROM artist_credit_name " .
                 "JOIN artist ON artist.id=artist_credit_name.artist " .
@@ -47,7 +47,9 @@ sub get_by_ids
                       artist => $self->c->model('Artist')->_new_from_row($row),
                       name => $row->{ac_name},
                       join_phrase => $row->{join_phrase} // '',
+                      display_mode_id => $row->{display_mode},
                   );
+
         $result{$id}->add_name($acn);
         $counts{$id} += 1;
     }
@@ -113,6 +115,7 @@ sub _find
     my @artists = map { $_->{artist}->{id} } @names;
     my @credits = map { $_->{name} } @names;
     my @join_phrases = map { $_->{join_phrase} } @names;
+    my @display_modes = map { $_->{display_mode} } @names;
 
     my $name = "";
     my (@joins, @conditions, @args);
@@ -144,7 +147,7 @@ sub _find
 
     my $id = $self->sql->select_single_value($query, @args, scalar @credits);
 
-    return ($id, $name, \@positions, \@credits, \@artists, \@join_phrases);
+    return ($id, $name, \@positions, \@credits, \@artists, \@join_phrases, \@display_modes);
 }
 
 sub find

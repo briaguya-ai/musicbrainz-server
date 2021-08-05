@@ -145,8 +145,8 @@ ALTER TABLE artist_credit_name_display_mode
    FOREIGN KEY (parent)
    REFERENCES artist_credit_name_display_mode(id);
 
-INSERT INTO artist_credit_name_display_mode (id, name) VALUES (1, 'Replace', NULL, 1, "replace artist_name with artist_credit_name") RETURNING *;
-INSERT INTO artist_credit_name_display_mode (id, name) VALUES (2, 'Credited As', NULL, 2, "display artist_name (credited as artist_credit_name)") RETURNING *;
+INSERT INTO artist_credit_name_display_mode (id, name, description, gid) VALUES (1, 'Replace', 'replace artist_name with artist_credit_name', generate_uuid_v3('6ba7b8119dad11d180b400c04fd430c8', 'artist_credit_name_display_mode_replace')) RETURNING *;
+INSERT INTO artist_credit_name_display_mode (id, name, description, gid) VALUES (2, 'Credited As', 'display artist_name (credited as artist_credit_name)', generate_uuid_v3('6ba7b8119dad11d180b400c04fd430c8', 'artist_credit_name_display_mode_credited_as')) RETURNING *;
 
 ALTER TABLE artist_credit_name ADD COLUMN display_mode integer default 1;
 
